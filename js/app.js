@@ -1,8 +1,6 @@
 let keyword = 'watch'
 
 const loadPhone = async (search,limit) => {
-  // keyword = search
-  // document.getElementById("input-field").value = "";
   document.getElementById("phone-container").innerHTML = "";
 
   const URL = `https://openapi.programming-hero.com/api/phones?search=${search}`;
@@ -11,6 +9,7 @@ const loadPhone = async (search,limit) => {
   displayPhone(data.data,limit);
 };
 const displayPhone = (phones,limit) => {
+  console.log(phones)
   const showAll = document.getElementById("show-all");
   if (limit && phones.length > 12) {
     phones = phones.slice(0, 12);
@@ -27,12 +26,12 @@ const displayPhone = (phones,limit) => {
   } else {
     alertDisplay.classList.add("hidden");
   }
-  // console.log(phone_name)
+  
   const phoneContainer = document.getElementById("phone-container");
   phones.forEach((phone) => {
-    // console.log(phone);
+    
     const { brand, phone_name, image } = phone;
-    // console.log(phone_name)
+    
     const div = document.createElement("div");
     div.innerHTML = `
           <div class="card card-compact w-full bg-base-100 shadow-2xl">
@@ -51,7 +50,7 @@ const displayPhone = (phones,limit) => {
     `;
 
     phoneContainer.appendChild(div);
-
+    
     spinner(false);
   });
 };
@@ -70,7 +69,6 @@ document
     if (event.key === "Enter") {
       showProduct(10)
     }
-    // spinner(true);
   });
 
 const loader = document.getElementById("loader2");
@@ -116,9 +114,7 @@ const phoneDetails = data =>{
     `  
 }
 
+loadPhone(keyword,10) ;
 
 
 
-
-
-loadPhone(keyword,10);
